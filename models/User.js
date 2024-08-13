@@ -1,6 +1,8 @@
 // use Users and NOT User when naming please
 // Destructure schema
-const { Schema, Types } = require("mongoose");
+
+const mongoose = require("mongoose");
+const { Schema } = mongoose;
 
 const userSchema = new Schema(
   {
@@ -20,17 +22,16 @@ const userSchema = new Schema(
     thoughts: [
       {
         type: Schema.Types.ObjectId,
-        ref: "Thought",
+        ref: "thought",
       },
     ],
     friends: [
       {
         type: Schema.Types.ObjectId,
-        ref: "User",
+        ref: "users",
       },
     ],
   },
-  // Getter sets mongoose default configuration to set IDs to false
   {
     toJSON: {
       getters: true,
@@ -44,6 +45,5 @@ userSchema.virtual("friendCount").get(function () {
   return this.friends.length;
 });
 
-// Export model User
-const User = model("User", userSchema);
+const User = mongoose.model("users", userSchema); // Create the User model using mongoose.model
 module.exports = User;

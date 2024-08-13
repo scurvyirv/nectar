@@ -1,4 +1,5 @@
-const { Schema, Types } = require("mongoose");
+const mongoose = require("mongoose");
+const { Schema } = mongoose;
 
 const thoughtSchema = new Schema(
   {
@@ -24,7 +25,7 @@ const thoughtSchema = new Schema(
     reactions: [
       {
         type: Schema.Types.ObjectId,
-        ref: "Reaction",
+        ref: "reaction",
       },
     ],
   },
@@ -42,6 +43,5 @@ thoughtSchema.virtual("reactionCount").get(function () {
   return this.reactions.length;
 });
 
-// Export model instead of schema directly
-const Thought = model("Thought", thoughtSchema);
+const Thought = mongoose.model("thoughts", thoughtSchema); // Create the Thought model using mongoose.model
 module.exports = Thought;
