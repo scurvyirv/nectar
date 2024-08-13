@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
+const reactionSchema = require("./Reaction");
 
 const thoughtSchema = new Schema(
   {
@@ -22,12 +23,7 @@ const thoughtSchema = new Schema(
       type: String,
       required: true,
     },
-    reactions: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "reaction",
-      },
-    ],
+    reactions: [reactionSchema], // 'reactions' is an array of the subdocument, reactionSchema
   },
   // Getter sets mongoose default configuration to set IDs to false
   {

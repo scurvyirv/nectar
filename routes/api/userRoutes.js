@@ -16,13 +16,13 @@ router.route("/").get(getUsers).post(createUser);
 router.route("/").get(getUsers);
 
 // /api/Users/:UserId (get single user)
-router.route("/:UserId").get(getSingleUser);
+router.route("/:userId").get(getSingleUser);
 
 // /api/Users/:UserId (update existing user)
-router.route("/:UserId").get(getSingleUser).put(updateUser);
+router.route("/:userId").get(getSingleUser).put(updateUser);
 
 // /api/Users/:UserId (delete existing user)
-router.route("/:UserId").get(getSingleUser).delete(deleteUser);
+router.route("/:userId").get(getSingleUser).delete(deleteUser);
 
 // /api/users/:userId/friends/:friendId
 router
